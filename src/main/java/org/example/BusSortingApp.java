@@ -30,9 +30,12 @@ public class BusSortingApp {
 
             List<Bus> buses = new ArrayList<>();
 
-            // Имитация заполнения (пока просто id от 1 до size)
             for (int i = 1; i <= size; i++) {
-                buses.add(new Bus.Builder().id(i).build());
+                buses.add(new Bus.Builder()
+                        .number(i)
+                        .model("Model-" + i)
+                        .mileage(1000.0 * i)
+                        .build());
             }
 
             if (buses.isEmpty()) {
@@ -41,22 +44,22 @@ public class BusSortingApp {
             }
 
             System.out.println("\nСортировать по:");
-            System.out.println("1. Номеру (по умолчанию)");
-            System.out.println("2. Модели (пока заглушка)");
-            System.out.println("3. Пробегу (пока заглушка)");
+            System.out.println("1. Номеру");
+            System.out.println("2. Модели");
+            System.out.println("3. Пробегу");
             System.out.print("→ ");
             int sortMode = readInt(1, 3);
 
             Comparator<Bus> comparator = switch (sortMode) {
-                case 1 -> new Bus();  // встроенный compare из класса Bus
-                case 2 -> Comparator.comparing(b -> "");   // заглушка
-                case 3 -> Comparator.comparingInt(b -> 0); // заглушка
+                case 1 -> new Bus();
+                case 2 -> Bus.byModel();
+                case 3 -> Bus.byMileage();
                 default -> new Bus();
             };
 
             buses.sort(comparator);
 
-            System.out.println("\nОтсортированный список (пока по id):");
+            System.out.println("\nОтсортированный список:");
             buses.forEach(System.out::println);
         }
 
