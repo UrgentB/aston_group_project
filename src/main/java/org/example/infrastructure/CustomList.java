@@ -11,7 +11,7 @@ public class CustomList<T> implements Iterable<T> {
 
     public CustomList(int capacity) {
         if (capacity < 1) {
-            throw new IllegalArgumentException();
+            capacity = 1;
         }
         this.array = new Object[capacity];
         this.size = 0;

@@ -7,11 +7,11 @@ package org.example.domain;
 
 public class Bus {
     
-    private String number;
+    private Integer number;
     private String model;
-    private Long mileage;
+    private Double mileage;
 
-    public Bus(String number, String model, Long mileage) {
+    public Bus(Integer number, String model, Double mileage) {
         this.number = number;
         this.model = model;
         this.mileage = mileage;
@@ -19,11 +19,11 @@ public class Bus {
 
     public Bus() {}
 
-    public String getNumber() {
+    public Integer getNumber() {
         return this.number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
@@ -35,11 +35,11 @@ public class Bus {
         this.model = model;
     }
 
-    public Long getMileage() {
+    public Double getMileage() {
         return this.mileage;
     }
 
-    public void setMileage(Long mileage) {
+    public void setMileage(Double mileage) {
         this.mileage = mileage;
     }
 }
