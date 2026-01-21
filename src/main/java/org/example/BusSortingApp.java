@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.domain.Bus;
+import org.example.domain.SortType;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -44,17 +46,26 @@ public class BusSortingApp {
             }
 
             System.out.println("\nСортировать по:");
-            System.out.println("1. Номеру");
-            System.out.println("2. Модели");
-            System.out.println("3. Пробегу");
+            System.out.println("1. " + SortType.SORT_NUMBER);
+            System.out.println("2. " + SortType.SORT_MODEL);
+            System.out.println("3. " + SortType.SORT_MILEAGE);
+            System.out.println("4. " + SortType.SORT_CONDITION);
             System.out.print("→ ");
-            int sortMode = readInt(1, 3);
 
-            Comparator<Bus> comparator = switch (sortMode) {
-                case 1 -> new Bus();
-                case 2 -> Bus.byModel();
-                case 3 -> Bus.byMileage();
-                default -> new Bus();
+            int sortChoice = readInt(1, 4);
+            SortType sortType = switch (sortChoice) {
+                case 1 -> SortType.SORT_NUMBER;
+                case 2 -> SortType.SORT_MODEL;
+                case 3 -> SortType.SORT_MILEAGE;
+                case 4 -> SortType.SORT_CONDITION;
+                default -> SortType.SORT_NUMBER;
+            };
+
+            Comparator<Bus> comparator = switch (sortType) {
+                case SORT_NUMBER    -> Bus.byNumber();
+                case SORT_MODEL     -> Bus.byModel();
+                case SORT_MILEAGE   -> Bus.byMileage();
+                case SORT_CONDITION -> Bus.fullComparator();
             };
 
             buses.sort(comparator);
