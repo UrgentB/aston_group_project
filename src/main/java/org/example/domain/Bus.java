@@ -61,7 +61,13 @@ public class Bus implements Comparator<Bus> {
                 .thenComparing(Bus::getModel)
                 .thenComparingDouble(Bus::getMileage);
     }
-
+    public static Bus createInstance(int number, String model, double mileage) {
+        return new Builder()
+                .number(number)
+                .model(model)
+                .mileage(mileage)
+                .build();
+    }
     public static class Builder {
         private int number;
         private String model;
