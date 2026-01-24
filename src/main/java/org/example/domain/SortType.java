@@ -16,8 +16,4 @@ public enum SortType {
      * Sorting by mileage.
      */
     SORT_MILEAGE,
-    /**
-     * Conditional sorting.
-     */
-    SORT_CONDITION
 }

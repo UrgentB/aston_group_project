@@ -8,9 +8,17 @@ import java.util.Comparator;
  */
 public class Bus implements Comparator<Bus> {
 
-    private final int number;
-    private final String model;
-    private final double mileage;
+public class Bus {
+    
+    private Integer number;
+    private String model;
+    private Double mileage;
+
+    public Bus(Integer number, String model, Double mileage) {
+        this.number = number;
+        this.model = model;
+        this.mileage = mileage;
+    }
 
     private Bus(Builder builder) {
         this.number = builder.number;
@@ -18,12 +26,23 @@ public class Bus implements Comparator<Bus> {
         this.mileage = builder.mileage;
     }
 
-    public int getNumber() {
-        return number;
+    public Integer getNumber() {
+        return this.number;
     }
 
+      public void setNumber(Integer number) {
+          this.number = number;
+      }
+    public void setModel(String model) {
+        this.number = number;
+    }  
+  
     public String getModel() {
         return model;
+    }
+  
+    public void setMileage(Double mileage) {
+        this.mileage = mileage;
     }
 
     public double getMileage() {
