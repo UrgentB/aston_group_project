@@ -1,14 +1,10 @@
 package org.example.domain;
 
-import java.util.Comparator;
-
 /**
  * Domain class representing a Bus entity.
  * Реализован Builder паттерн.
  */
-public class Bus implements Comparator<Bus> {
-
-public class Bus {
+public class Bus implements Comparable<Bus> {
     
     private Integer number;
     private String model;
@@ -20,6 +16,8 @@ public class Bus {
         this.mileage = mileage;
     }
 
+    public Bus() {}
+
     private Bus(Builder builder) {
         this.number = builder.number;
         this.model = builder.model;
@@ -30,11 +28,12 @@ public class Bus {
         return this.number;
     }
 
-      public void setNumber(Integer number) {
-          this.number = number;
-      }
-    public void setModel(String model) {
+    public void setNumber(Integer number) {
         this.number = number;
+    }
+    
+    public void setModel(String model) {
+        this.model = model;
     }  
   
     public String getModel() {
@@ -45,7 +44,7 @@ public class Bus {
         this.mileage = mileage;
     }
 
-    public double getMileage() {
+    public Double getMileage() {
         return mileage;
     }
 
@@ -55,31 +54,22 @@ public class Bus {
                 number, model, mileage);
     }
 
-    @Override
-    public int compare(Bus b1, Bus b2) {
-        return Integer.compare(b1.number, b2.number);
-    }
-
-    public static Comparator<Bus> byNumber() {
-        return Comparator.comparingInt(Bus::getNumber);
-    }
-
-    public static Comparator<Bus> byModel() {
-        return Comparator.comparing(Bus::getModel);
-    }
-
-    public static Comparator<Bus> byMileage() {
-        return Comparator.comparingDouble(Bus::getMileage);
-    }
-
     /**
-     * Комбинированная сортировка
+     * Базовая сортировка по всем 3 полям.
+     * Сравнивает последовательно номер, модель и пробег автобуса.
+     * @param other
+     * @return
      */
-    public static Comparator<Bus> fullComparator() {
-        return Comparator.comparingInt(Bus::getNumber)
-                .thenComparing(Bus::getModel)
-                .thenComparingDouble(Bus::getMileage);
+
+    @Override
+    public int compareTo(Bus other) {
+        int result =  this.number.compareTo(other.number);
+        if (result != 0) return result;
+        result = this.model.compareTo(other.model);
+        if (result != 0) return result;
+        return this.mileage.compareTo(other.mileage);
     }
+
     public static Bus createInstance(int number, String model, double mileage) {
         return new Builder()
                 .number(number)

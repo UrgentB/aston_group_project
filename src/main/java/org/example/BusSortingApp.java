@@ -1,5 +1,10 @@
 package org.example;
 
+import org.example.application.comparators.BasicBusComparator;
+import org.example.application.comparators.MileageBusComparator;
+import org.example.application.comparators.ModelBusComparator;
+import org.example.application.comparators.NumberBusComparator;
+import org.example.domain.Bus;
 import org.example.domain.SortType;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -45,10 +50,10 @@ public class BusSortingApp {
             }
 
             System.out.println("\nСортировать по:");
-            System.out.println("1. " + SortType.SORT_NUMBER);
-            System.out.println("2. " + SortType.SORT_MODEL);
-            System.out.println("3. " + SortType.SORT_MILEAGE);
-            System.out.println("4. " + SortType.SORT_CONDITION);
+            System.out.println("1. " + SortType.SORT_NUMBER.getTitle());
+            System.out.println("2. " + SortType.SORT_MODEL.getTitle());
+            System.out.println("3. " + SortType.SORT_MILEAGE.getTitle());
+            System.out.println("4. " + SortType.SORT_BASIC.getTitle());
             System.out.print("→ ");
 
             int sortChoice = readInt(1, 4);
@@ -56,15 +61,15 @@ public class BusSortingApp {
                 case 1 -> SortType.SORT_NUMBER;
                 case 2 -> SortType.SORT_MODEL;
                 case 3 -> SortType.SORT_MILEAGE;
-                case 4 -> SortType.SORT_CONDITION;
-                default -> SortType.SORT_NUMBER;
+                case 4 -> SortType.SORT_BASIC;
+                default -> SortType.SORT_BASIC;
             };
 
             Comparator<Bus> comparator = switch (sortType) {
-                case SORT_NUMBER    -> Bus.byNumber();
-                case SORT_MODEL     -> Bus.byModel();
-                case SORT_MILEAGE   -> Bus.byMileage();
-                case SORT_CONDITION -> Bus.fullComparator();
+                case SORT_NUMBER    -> new NumberBusComparator();
+                case SORT_MODEL     -> new ModelBusComparator();
+                case SORT_MILEAGE   -> new MileageBusComparator();
+                case SORT_BASIC     -> new BasicBusComparator();
             };
 
             buses.sort(comparator);

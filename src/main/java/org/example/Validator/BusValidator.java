@@ -1,6 +1,6 @@
 package org.example.Validator;
 
-import org.example.Model.Bus;
+import org.example.domain.Bus;
 
 public class BusValidator {
     //Простая валидация передаваемой строки
