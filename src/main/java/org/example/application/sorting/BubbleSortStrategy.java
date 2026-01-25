@@ -1,4 +1,4 @@
-package org.example.application;
+package org.example.application.sorting;
 
 import java.util.Comparator;
 
@@ -6,12 +6,12 @@ import org.example.infrastructure.CustomList;
 
 public class BubbleSortStrategy<T> extends SortStrategy<T> {
 
-    protected BubbleSortStrategy(Comparator<T> comparator) {
+    public BubbleSortStrategy(Comparator<T> comparator) {
         super(comparator);
     }
 
     @Override
-    void sort(CustomList<T> entityList) {
+    public void sort(CustomList<T> entityList) {
         boolean isSorted = false;
         while (!isSorted) {
             isSorted = true;

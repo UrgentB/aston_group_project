@@ -1,5 +1,7 @@
 package org.example.infrastructure;
 
+import java.io.IOException;
+
 /**
  * Generic interface for file storage operations.
  * @param <T> the type of elements to be stored
@@ -17,5 +19,5 @@ public interface FileStorage<T> {
      * Loads data from storage.
      * @return the loaded data
      */
-    CustomList<T> load();
+    CustomList<T> load() throws IOException;
 }

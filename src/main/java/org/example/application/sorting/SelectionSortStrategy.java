@@ -1,4 +1,4 @@
-package org.example.application;
+package org.example.application.sorting;
 
 import java.util.Comparator;
 
@@ -6,12 +6,12 @@ import org.example.infrastructure.CustomList;
 
 public class SelectionSortStrategy<T> extends SortStrategy<T> {
 
-    protected SelectionSortStrategy(Comparator<T> comparator) {
+    public SelectionSortStrategy(Comparator<T> comparator) {
         super(comparator);
     }
 
     @Override
-    void sort(CustomList<T> entityList) {
+    public void sort(CustomList<T> entityList) {
         int sortedIndex = 0;
         while (sortedIndex < entityList.size() - 1) {
             int minIndex = sortedIndex;
