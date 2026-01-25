@@ -3,6 +3,8 @@ package org.example.infrastructure;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Iterator;
+
 import org.example.domain.Bus;
 import org.junit.jupiter.api.Test;
 

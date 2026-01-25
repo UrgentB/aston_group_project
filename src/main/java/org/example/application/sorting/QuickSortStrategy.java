@@ -1,4 +1,4 @@
-package org.example.application;
+package org.example.application.sorting;
 
 import java.util.Comparator;
 
@@ -6,12 +6,12 @@ import org.example.infrastructure.CustomList;
 
 public class QuickSortStrategy<T> extends SortStrategy<T> {
 
-    protected QuickSortStrategy(Comparator<T> comparator) {
+    public QuickSortStrategy(Comparator<T> comparator) {
         super(comparator);
     }
 
     @Override
-    void sort(CustomList<T> entityList) {
+    public void sort(CustomList<T> entityList) {
         quicksort(entityList, 0, entityList.size()-1);
     }
 

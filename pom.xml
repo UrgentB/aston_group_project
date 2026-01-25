@@ -17,8 +17,8 @@
         <mockito.version>5.21.0</mockito.version>
         <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
-        <jacoco.unit-tests.limit.instruction-ratio>0%</jacoco.unit-tests.limit.instruction-ratio>
-        <jacoco.unit-tests.limit.branch-ratio>0%</jacoco.unit-tests.limit.branch-ratio>
+        <jacoco.unit-tests.limit.instruction-ratio>100%</jacoco.unit-tests.limit.instruction-ratio>
+        <jacoco.unit-tests.limit.branch-ratio>100%</jacoco.unit-tests.limit.branch-ratio>
 
 
     </properties>
@@ -94,8 +94,8 @@
                                 <rule>
                                 <element>PACKAGE</element>
                                 <includes>
-                                    <include>org/example/application/*</include>
-                                    <include>org/example/infrastructure/*</include>
+                                    <include>org.example.application</include>
+                                    <include>org.example.infrastructure</include>
                                 </includes>
                                     <limits>
                                         <limit>

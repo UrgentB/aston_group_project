@@ -1,4 +1,4 @@
-package org.example.application;
+package org.example.application.sorting;
 
 import java.util.Comparator;
 
@@ -32,6 +32,6 @@ public abstract class SortStrategy<T> {
      * @param entityList
      */
 
-    abstract void sort(CustomList<T> entityList);
+    public abstract void sort(CustomList<T> entityList);
 
 }

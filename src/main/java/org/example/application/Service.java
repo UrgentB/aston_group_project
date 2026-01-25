@@ -1,5 +1,6 @@
 package org.example.application;
 
+import org.example.application.sorting.SortStrategy;
 import org.example.infrastructure.CustomList;
 
 /**

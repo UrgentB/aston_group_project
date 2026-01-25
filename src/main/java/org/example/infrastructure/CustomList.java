@@ -1,5 +1,7 @@
 package org.example.infrastructure;
 
+import java.util.Iterator;
+
 public class CustomList<T> implements Iterable<T> {
 
     private Object[] array;
