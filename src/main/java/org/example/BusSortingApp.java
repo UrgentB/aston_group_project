@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.domain.Bus;
 import org.example.domain.SortType;
 import java.util.ArrayList;
 import java.util.Comparator;

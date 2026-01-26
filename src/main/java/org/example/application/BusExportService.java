@@ -23,7 +23,11 @@ class BusExportService implements FileStorage<Bus>{
 
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, fileWritingRegime))){
             data.forEach(bus -> {
-                bw.write(bus.toString() + '\n');
+                try {
+                    bw.write(bus.toString() + '\n');
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
         }
         catch(IOException ex){
