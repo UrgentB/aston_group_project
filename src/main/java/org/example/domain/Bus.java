@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import java.util.Objects; 
 /**
  * Domain class representing a Bus entity.
  * Реализован Builder паттерн.
@@ -48,6 +49,22 @@ public class Bus implements Comparable<Bus> {
         return mileage;
     }
 
+     // ← НОВЫЕ МЕТОДЫ ДОБАВЛЕНЫ ЗДЕСЬ
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bus bus = (Bus) o;
+        return Objects.equals(number, bus.number) &&
+               Objects.equals(model, bus.model) &&
+               Objects.equals(mileage, bus.mileage);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, model, mileage);
+    }
+     // ← НОВЫЕ МЕТОДЫ ДОБАВЛЕНЫ ЗДЕСЬ
+    
     @Override
     public String toString() {
         return String.format("Bus{number=%d, model='%s', mileage=%.1f}",
