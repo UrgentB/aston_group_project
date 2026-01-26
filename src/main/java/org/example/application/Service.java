@@ -1,27 +1,34 @@
 package org.example.application;
 
-import org.example.application.sorting.SortStrategy;
+import org.example.application.sorting.SortAlgorythm;
+import org.example.application.sorting.SortType;
 import org.example.infrastructure.CustomList;
 
 /**
- * Abstract service class for processing data.
- * Сервис-слой для обработки данных (поиск и сортировка).
- * @param <T> the type of elements being processed
+ * Generic service interface for processing CustomList data.
+ * @param <T> the type of elements in the CustomList
  */
-public abstract class Service<T> {
-    /**
-     * Strategy for sorting data.
-     */
-    protected SortStrategy<T> sortStrategy;
+public interface Service<T> {
 
     /**
-     * Processes data using the defined sort strategy.
-     * @param data the data to be processed
-     * @return the processed data
+     * Sorts the given CustomList data using the specified sort type and algorithm.
+     * @param data
+     * @param sortType
+     * @param sortAlgorythm
+     * @return
      */
-    public abstract CustomList<T> processData(CustomList<T> data);
+    CustomList<T> sort(CustomList<T> data, SortType sortType, SortAlgorythm sortAlgorythm);
 
-    public void setSortStrategy(SortStrategy<T> sortStrategy) {
-        this.sortStrategy = sortStrategy;
-    }
+    /**
+     * Reads data using the specified input type.
+     * @param inputType
+     * @return
+     */
+    CustomList<T> read(InputType inputType);
+
+    /**
+     * Writes the given CustomList data to the output.
+     * @param data
+     */
+    void write(CustomList<T> data);
 }

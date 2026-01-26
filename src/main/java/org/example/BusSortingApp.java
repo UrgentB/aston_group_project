@@ -4,8 +4,9 @@ import org.example.application.comparators.BasicBusComparator;
 import org.example.application.comparators.MileageBusComparator;
 import org.example.application.comparators.ModelBusComparator;
 import org.example.application.comparators.NumberBusComparator;
+import org.example.application.sorting.SortType;
 import org.example.domain.Bus;
-import org.example.domain.SortType;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

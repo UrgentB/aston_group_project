@@ -1,6 +1,8 @@
 package org.example.infrastructure;
 
 import java.util.Iterator;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class CustomList<T> implements Iterable<T> {
 
@@ -35,6 +37,10 @@ public class CustomList<T> implements Iterable<T> {
 
     public int size() {
         return size;
+    }
+
+    public Stream<T> stream() {
+        return StreamSupport.stream(this.spliterator(), false);
     }
 
     @Override
