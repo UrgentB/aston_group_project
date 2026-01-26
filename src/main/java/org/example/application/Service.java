@@ -1,6 +1,7 @@
 package org.example.application;
 
 import org.example.application.sorting.SortAlgorythm;
+import org.example.application.sorting.SortCondition;
 import org.example.application.sorting.SortType;
 import org.example.infrastructure.CustomList;
 
@@ -17,7 +18,7 @@ public interface Service<T> {
      * @param sortAlgorythm
      * @return
      */
-    CustomList<T> sort(CustomList<T> data, SortType sortType, SortAlgorythm sortAlgorythm);
+    CustomList<T> sort(CustomList<T> data, SortType sortType, SortAlgorythm sortAlgorythm, SortCondition sortCondition);
 
     /**
      * Reads data using the specified input type.

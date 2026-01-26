@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import org.example.infrastructure.CustomList;
 
-public class BubbleSortStrategy<T> extends SortStrategy<T> {
+public class BubbleSortStrategy<T> implements SortStrategy<T> {
+
+    private final Comparator<T> comparator;
 
     public BubbleSortStrategy(Comparator<T> comparator) {
-        super(comparator);
+        this.comparator = comparator;
     }
 
     @Override
