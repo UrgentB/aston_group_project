@@ -104,7 +104,7 @@ public class BusSortingApp {
             }
         }
     }
-        /Многопоточный подсчет вхождений автобуса в коллекцию
+        //Многопоточный подсчет вхождений автобуса в коллекцию
      
     private static void runMultithreadedCounter(List<Bus> buses) {
         System.out.println("\n" + "=".repeat(50));
