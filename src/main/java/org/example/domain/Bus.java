@@ -87,16 +87,7 @@ public class Bus implements Comparable<Bus> {
      * @param other
      * @return
      */
-
-    @Override
-    public int compareTo(Bus other) {
-        int result =  this.number.compareTo(other.number);
-        if (result != 0) return result;
-        result = this.model.compareTo(other.model);
-        if (result != 0) return result;
-        return this.mileage.compareTo(other.mileage);
-    }
-
+    
     public static Bus createInstance(int number, String model, double mileage) {
         return new Builder()
                 .number(number)
