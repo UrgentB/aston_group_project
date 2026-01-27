@@ -63,6 +63,16 @@ public class Bus implements Comparable<Bus> {
     public int hashCode() {
         return Objects.hash(number, model, mileage);
     }
+
+    @Override
+    public int compareTo(Bus other) {
+        // Сравнение для сортировки
+        int result = Objects.compare(this.number, other.number, Integer::compare);
+        if (result != 0) return result;
+        result = Objects.compare(this.model, other.model, String::compareTo);
+        if (result != 0) return result;
+        return Objects.compare(this.mileage, other.mileage, Double::compare);
+    }
      // ← НОВЫЕ МЕТОДЫ ДОБАВЛЕНЫ ЗДЕСЬ
     
     @Override
