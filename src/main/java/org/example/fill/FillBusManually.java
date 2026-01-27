@@ -1,6 +1,7 @@
 package org.example.fill;
 
 import org.example.domain.Bus;
+import org.example.infrastructure.CustomList;
 
 import java.util.Scanner;
 
@@ -12,18 +13,12 @@ public class FillBusManually implements FillBus {
     private final String MES_PAGES = "Введите пробег автобуса: ";
     private final String MES_ERROR_BUILD = "Невозможно создать автобус с такими параметрами";
 
-    public Bus[] fill() {
+    public CustomList<Bus> fill() {
         Scanner in = new Scanner(System.in);
 
         Integer countBus = InputHelp.getIntField(MES_COUNT, in);
 
-        Bus[] buses = null;
-
-        if(countBus != null && countBus > 0) {
-            buses = new Bus[countBus];
-        } else countBus = 0;
-
-        int j = 0;
+        CustomList<Bus> buses = new CustomList<>();
 
         for(int i = 0; i < countBus; i++) {
             Integer number = InputHelp.getIntField(MES_AUTHOR, in);
@@ -33,19 +28,12 @@ public class FillBusManually implements FillBus {
             Double mileage = InputHelp.getDoubleField(MES_PAGES, in);
 
             if(CheckHelp.busCheck(number, model, mileage)) {
-                buses[j] = Bus.createInstance(number, model, mileage);
-                j++;
+                buses.add(Bus.createInstance(number, model, mileage));
             } else {
                 System.out.println(MES_ERROR_BUILD);
             }
         }
 
-        Bus[] buses_result = null;
-        if(j > 0) {
-            buses_result = new Bus[j];
-            System.arraycopy(buses, 0, buses_result, 0, j);
-        }
-
-        return buses_result;
+        return buses;
     }
 }

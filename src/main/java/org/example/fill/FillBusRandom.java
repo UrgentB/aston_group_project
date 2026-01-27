@@ -1,6 +1,7 @@
 package org.example.fill;
 
-import org.example.Bus;
+import org.example.domain.Bus;
+import org.example.infrastructure.CustomList;
 
 import java.util.Scanner;
 import java.util.Random;
@@ -17,17 +18,12 @@ public class FillBusRandom implements FillBus {
 
 
     @Override
-    public Bus[] fill() {
+    public CustomList<Bus> fill() {
         Scanner in = new Scanner(System.in);
 
         Integer countBus = InputHelp.getIntField(MES_COUNT, in);
 
-        Bus[] buses = null;
-
-        if(countBus != null && countBus > 0) {
-            buses = new Bus[countBus];
-        } else countBus = 0;
-
+        CustomList<Bus> buses = new CustomList<>();
 
         for(int i = 0; i < countBus; i++) {
             Integer number = MIN_NUMBER + RANDOM.nextInt(MAX_NUMBER - MIN_NUMBER + 1);
@@ -36,18 +32,11 @@ public class FillBusRandom implements FillBus {
 
             Double mileage = MIN_MILEAGE + RANDOM.nextDouble() * (MAX_MILEAGE - MIN_MILEAGE);
 
-            buses[i] = Bus.createInstance(number, model, mileage);
+            buses.add(Bus.createInstance(number, model, mileage));
 
         }
 
-        Bus[] buses_result = null;
-
-        if(buses != null) {
-            buses_result = new Bus[buses.length];
-            System.arraycopy(buses, 0, buses_result, 0, buses.length);
-        }
-
-        return buses_result;
+        return buses;
     }
 
 }
