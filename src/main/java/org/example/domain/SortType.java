@@ -7,17 +7,27 @@ public enum SortType {
     /**
      * Sorting by number.
      */
-    SORT_NUMBER,
+    SORT_NUMBER("Сортировать по номеру."),
     /**
      * Sorting by model.
      */
-    SORT_MODEL,
+    SORT_MODEL("Сортировать по модели."),
     /**
      * Sorting by mileage.
      */
-    SORT_MILEAGE,
+    SORT_MILEAGE("Сортировать по пробегу."),
     /**
-     * Conditional sorting.
+     * Sort all fields (basic)
      */
-    SORT_CONDITION
+    SORT_BASIC("Сортировать по всем полям.");
+
+    private final String title;
+
+    SortType(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }
