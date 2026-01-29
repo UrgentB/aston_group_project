@@ -94,7 +94,7 @@ switch (sortChoice) {
     default:
         sortType = SortType.SORT_BASIC;
         break;
-};
+}
 
             
 Comparator<Bus> comparator;
@@ -112,7 +112,7 @@ switch (sortType) {
     default:
         comparator = new BasicBusComparator();
         break;
-};
+}
 
             buses.sort(comparator);
 
