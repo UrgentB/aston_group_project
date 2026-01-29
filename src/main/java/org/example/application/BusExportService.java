@@ -19,10 +19,14 @@ public class BusExportService {
    
     public void save(CustomList<Bus> data){
 
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, fileWritingRegime))) {
-            for(Bus bus : data) {
-                bw.write(bus.toString() + '\n');
-            }
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, fileWritingRegime))){
+            data.forEach(bus -> {
+                try {
+                    bw.write(bus.toString() + '\n');
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
