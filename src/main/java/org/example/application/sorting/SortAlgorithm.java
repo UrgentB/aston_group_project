@@ -5,15 +5,14 @@ import java.util.function.Function;
 
 import org.example.domain.Bus;
 
-public enum SortAlgorythm {
+public enum SortAlgorithm {
     SORT_BUBBLE(BubbleSortStrategy::new),
     SORT_QUICKSORT(QuickSortStrategy::new),
-    SORT_SELECTION(SelectionSortStrategy::new),
-    SORT_CONDITION(BubbleSortStrategy::new);
+    SORT_SELECTION(SelectionSortStrategy::new);
 
     private Function<Comparator<Bus>, SortStrategy<Bus>> factory;
 
-    private SortAlgorythm(Function<Comparator<Bus>, SortStrategy<Bus>> factory) {
+    private SortAlgorithm(Function<Comparator<Bus>, SortStrategy<Bus>> factory) {
         this.factory = factory;
     }
 

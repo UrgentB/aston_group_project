@@ -1,6 +1,7 @@
 package org.example.infrastructure;
 
 import java.util.Iterator;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -71,5 +72,9 @@ public class CustomList<T> implements Iterable<T> {
             }
             array = newArray;
         }
+    }
+
+    public String toString() {
+        return this.stream().map(e -> e.toString()).collect(Collectors.joining("\n"));
     }
 }

@@ -3,7 +3,7 @@ package org.example.application;
 import java.io.IOException;
 import java.util.Comparator;
 
-import org.example.application.sorting.SortAlgorythm;
+import org.example.application.sorting.SortAlgorithm;
 import org.example.application.sorting.SortCondition;
 import org.example.application.sorting.SortStrategy;
 import org.example.application.sorting.SortType;
@@ -25,9 +25,9 @@ public class BusServiceImpl implements Service<Bus> {
     }
 
     @Override
-    public CustomList<Bus> sort(CustomList<Bus> data, SortType sortType, SortAlgorythm sortAlgorythm, SortCondition sortCondition) {
+    public CustomList<Bus> sort(CustomList<Bus> data, SortType sortType, SortAlgorithm sortAlgorithm, SortCondition sortCondition) {
         Comparator<Bus> comparator = sortType.geComparator();
-        SortStrategy<Bus> sortStrategy = sortAlgorythm.create(comparator);
+        SortStrategy<Bus> sortStrategy = sortAlgorithm.create(comparator);
         sortStrategy.sort(data);
         return data;
     }
