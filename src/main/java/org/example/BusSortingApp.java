@@ -79,20 +79,40 @@ public class BusSortingApp {
 
             int sortChoice = readInt(1, 4);
             
-            SortType sortType = switch (sortChoice) {
-                case 1 -> SortType.SORT_NUMBER;
-                case 2 -> SortType.SORT_MODEL;
-                case 3 -> SortType.SORT_MILEAGE;
-                case 4 -> SortType.SORT_BASIC;
-                default -> SortType.SORT_BASIC;
-            };
+            SortType sortType;
+switch (sortChoice) {
+    case 1:
+        sortType = SortType.SORT_NUMBER;
+        break;
+    case 2:
+        sortType = SortType.SORT_MODEL;
+        break;
+    case 3:
+        sortType = SortType.SORT_MILEAGE;
+        break;
+    case 4:
+    default:
+        sortType = SortType.SORT_BASIC;
+        break;
+};
 
-            Comparator<Bus> comparator = switch (sortType) {
-                case SORT_NUMBER    -> new NumberBusComparator();
-                case SORT_MODEL     -> new ModelBusComparator();
-                case SORT_MILEAGE   -> new MileageBusComparator();
-                case SORT_BASIC     -> new BasicBusComparator();
-            };
+            
+Comparator<Bus> comparator;
+switch (sortType) {
+    case SORT_NUMBER:
+        comparator = new NumberBusComparator();
+        break;
+    case SORT_MODEL:
+        comparator = new ModelBusComparator();
+        break;
+    case SORT_MILEAGE:
+        comparator = new MileageBusComparator();
+        break;
+    case SORT_BASIC:
+    default:
+        comparator = new BasicBusComparator();
+        break;
+};
 
             buses.sort(comparator);
 
