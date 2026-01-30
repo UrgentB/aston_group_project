@@ -22,7 +22,11 @@ public class BusValidator {
             String model = parts[1].trim();
             double mileage = Double.parseDouble(parts[2].trim());
             if(CheckHelp.busCheck(number, model, mileage)){
-                return Bus.createInstance(number, model, mileage);
+                return new Bus.Builder()
+                        .number(number)
+                        .model(model)
+                        .mileage(mileage)
+                        .build();
             }
 
         }catch (NumberFormatException exception){
