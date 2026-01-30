@@ -18,7 +18,7 @@ public class App {
 
     public void run() {
 
-        final ImportService<Bus> importService = new BusImportService();
+        final ImportService<Bus> importService = new BusImportService(null, null, null);
         final ExportService<Bus> exportService = new BusExportService(true);
 
         final ApplicationController applicationController = new ApplicationController();

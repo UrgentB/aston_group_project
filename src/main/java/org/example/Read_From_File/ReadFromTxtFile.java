@@ -1,13 +1,15 @@
 package org.example.Read_From_File;
 
+import org.example.application.Readable;
+
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.example.infrastructure.CustomList;
-
-public class ReadFromFile {
-    public CustomList<String> read(String path) throws IOException{
+public class ReadFromTxtFile implements Readable {
+    public List<String> read(String path) throws IOException{
         String line;
-        CustomList<String> rows = new CustomList<>();
+        List<String> rows = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path)))){
             while((line = reader.readLine()) != null){
                 rows.add(line);

@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.example.domain.Bus;
 import org.example.infrastructure.CustomList;
 
-public class BusExportService implements ExportService<Bus> {
+public class BusExportService implements ExportService<Bus>{
 
     String path;
     Boolean fileWritingRegime;

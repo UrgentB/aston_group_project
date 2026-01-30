@@ -34,7 +34,7 @@ public class BusServiceImpl implements Service<Bus> {
 
     @Override
     public CustomList<Bus> read(InputType inputType) {
-        importService.setStrategy(inputType);
+        //importService.setStrategy(inputType);
         try {
             return importService.load();
         } catch (IOException e) {
