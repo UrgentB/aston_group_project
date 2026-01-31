@@ -28,7 +28,7 @@ public class FillBusManuallyTest {
 
             Bus busResult = Bus.createInstance(101,"Volvo", 15000.5);
 
-            assertEquals(buses.get(0), busResult);
+            assertEquals(busResult, buses.get(0));
         } finally {
             System.setIn(originalIn);
         }
@@ -48,9 +48,10 @@ public class FillBusManuallyTest {
             Bus busResult2 = Bus.createInstance(102,"Volvo", 20000.0);
             Bus busResult3 = Bus.createInstance(103,"Mercedes", 14444);
 
-            assertEquals(buses.get(0), busResult1);
-            assertEquals(buses.get(1), busResult2);
-            assertEquals(buses.get(2), busResult3);
+            assertEquals(busResult1, buses.get(0));
+            assertEquals(busResult2, buses.get(1));
+            assertEquals(busResult3, buses.get(2));
+            assertEquals(3, buses.size());
         } finally {
             System.setIn(originalIn);
         }
@@ -68,8 +69,8 @@ public class FillBusManuallyTest {
 
             Bus busResult1 = Bus.createInstance(101,"Mercedes", 15000.5);
 
-            assertEquals(buses.get(0), busResult1);
-            assertEquals(buses.size(), 1);
+            assertEquals(busResult1, buses.get(0));
+            assertEquals(1, buses.size());
         } finally {
             System.setIn(originalIn);
         }

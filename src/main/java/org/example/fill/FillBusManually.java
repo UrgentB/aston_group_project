@@ -3,6 +3,8 @@ package org.example.fill;
 import org.example.domain.Bus;
 import org.example.infrastructure.CustomList;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class FillBusManually implements FillBus {
@@ -18,7 +20,9 @@ public class FillBusManually implements FillBus {
 
         Integer countBus = InputHelp.getIntField(MES_COUNT, in);
 
-        CustomList<Bus> buses = new CustomList<>();
+        Bus[] buses = new Bus[countBus];
+
+        int j = 0;
 
         for(int i = 0; i < countBus; i++) {
             Integer number = InputHelp.getIntField(MES_AUTHOR, in);
@@ -28,12 +32,19 @@ public class FillBusManually implements FillBus {
             Double mileage = InputHelp.getDoubleField(MES_PAGES, in);
 
             if(CheckHelp.busCheck(number, model, mileage)) {
-                buses.add(Bus.createInstance(number, model, mileage));
+                buses[j] = Bus.createInstance(number, model, mileage);
+                j++;
             } else {
                 System.out.println(MES_ERROR_BUILD);
             }
         }
 
-        return buses;
+        CustomList<Bus> buses_result = null;
+        if(j > 0) {
+            buses_result = new CustomList<>();
+            Arrays.stream(buses).filter(Objects::nonNull).forEach(buses_result::add);
+        }
+
+        return buses_result;
     }
 }

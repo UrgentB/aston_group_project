@@ -27,7 +27,7 @@ public class FillRandomTest {
 
             CustomList<Bus> buses = fillBus.fill();
 
-            assertEquals(buses.size(), 3);
+            assertEquals(3, buses.size());
         } finally {
             System.setIn(originalIn);
         }
