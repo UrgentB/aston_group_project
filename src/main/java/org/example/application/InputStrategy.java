@@ -21,4 +21,6 @@ public interface InputStrategy<T> {
 
     CustomList<T> loadData() throws IOException;
 
+    CustomList<T> loadStreamData() throws IOException;
+
 }

@@ -10,15 +10,15 @@ public enum InputType {
     /**
      * Input generated randomly.
      */
-    INPUT_RANDOM(new RandomInputStrategy()),
+    INPUT_RANDOM(new RandomBusInputStrategyAdapter()),
     /**
      * Input provided manually by the user.
      */
-    INPUT_MANUAL(new RandomInputStrategy()),
+    INPUT_MANUAL(new ManualBusInputStrategyAdapter()),
     /**
      * Input read from a file.
      */
-    INPUT_FROM_FILE(new RandomInputStrategy());
+    INPUT_FROM_FILE(new FileBusInputStrategyAdapter());
 
     private final InputStrategy<Bus> inputStrategy;
 

@@ -6,5 +6,7 @@ import org.example.infrastructure.CustomList;
 
 public interface ImportService<T> {
     
-    public CustomList<T> load() throws IOException;
+    CustomList<T> load() throws IOException;
+
+    CustomList<T> streamLoad() throws IOException; 
 }
