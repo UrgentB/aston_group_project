@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.example.domain.Bus;
 import org.example.infrastructure.CustomList;
 
-public class BusExportService {
+public class BusExportService implements ExportService<Bus>{
 
     String path;
     Boolean fileWritingRegime;
@@ -16,13 +16,18 @@ public class BusExportService {
         this.fileWritingRegime = fileWritingRegime;
         this.path = path;
     }
-   
+
+    @Override
     public void save(CustomList<Bus> data){
 
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, fileWritingRegime))) {
-            for(Bus bus : data) {
-                bw.write(bus.toString() + '\n');
-            }
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, fileWritingRegime))){
+            data.forEach(bus -> {
+                try {
+                    bw.write(bus.toString() + '\n');
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());

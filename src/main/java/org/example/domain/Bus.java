@@ -1,14 +1,11 @@
 package org.example.domain;
 
-import java.util.Comparator;
-
+import java.util.Objects; 
 /**
  * Domain class representing a Bus entity.
  * Реализован Builder паттерн.
  */
-public class Bus implements Comparator<Bus> {
-
-public class Bus {
+public class Bus implements Comparable<Bus> {
     
     private Integer number;
     private String model;
@@ -20,6 +17,8 @@ public class Bus {
         this.mileage = mileage;
     }
 
+    public Bus() {}
+
     private Bus(Builder builder) {
         this.number = builder.number;
         this.model = builder.model;
@@ -30,11 +29,12 @@ public class Bus {
         return this.number;
     }
 
-      public void setNumber(Integer number) {
-          this.number = number;
-      }
-    public void setModel(String model) {
+    public void setNumber(Integer number) {
         this.number = number;
+    }
+    
+    public void setModel(String model) {
+        this.model = model;
     }  
   
     public String getModel() {
@@ -45,41 +45,58 @@ public class Bus {
         this.mileage = mileage;
     }
 
-    public double getMileage() {
+    public Double getMileage() {
         return mileage;
     }
 
+     // ← НОВЫЕ МЕТОДЫ ДОБАВЛЕНЫ ЗДЕСЬ
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bus bus = (Bus) o;
+        return Objects.equals(number, bus.number) &&
+               Objects.equals(model, bus.model) &&
+               Objects.equals(mileage, bus.mileage);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, model, mileage);
+    }
+
+    @Override
+    public int compareTo(Bus other) {
+        // Сравнение для сортировки
+        int result = Objects.compare(this.number, other.number, Integer::compare);
+        if (result != 0) return result;
+        result = Objects.compare(this.model, other.model, String::compareTo);
+        if (result != 0) return result;
+        return Objects.compare(this.mileage, other.mileage, Double::compare);
+    }
+     // ← НОВЫЕ МЕТОДЫ ДОБАВЛЕНЫ ЗДЕСЬ
+    
     @Override
     public String toString() {
         return String.format("Bus{number=%d, model='%s', mileage=%.1f}",
                 number, model, mileage);
     }
 
-    @Override
-    public int compare(Bus b1, Bus b2) {
-        return Integer.compare(b1.number, b2.number);
-    }
-
-    public static Comparator<Bus> byNumber() {
-        return Comparator.comparingInt(Bus::getNumber);
-    }
-
-    public static Comparator<Bus> byModel() {
-        return Comparator.comparing(Bus::getModel);
-    }
-
-    public static Comparator<Bus> byMileage() {
-        return Comparator.comparingDouble(Bus::getMileage);
-    }
-
     /**
-     * Комбинированная сортировка
+     * Базовая сортировка по всем 3 полям.
+     * Сравнивает последовательно номер, модель и пробег автобуса.
+     * @param other
+     * @return
      */
-    public static Comparator<Bus> fullComparator() {
-        return Comparator.comparingInt(Bus::getNumber)
-                .thenComparing(Bus::getModel)
-                .thenComparingDouble(Bus::getMileage);
+
+    @Override
+    public int compareTo(Bus other) {
+        int result =  this.number.compareTo(other.number);
+        if (result != 0) return result;
+        result = this.model.compareTo(other.model);
+        if (result != 0) return result;
+        return this.mileage.compareTo(other.mileage);
     }
+
     public static Bus createInstance(int number, String model, double mileage) {
         return new Builder()
                 .number(number)

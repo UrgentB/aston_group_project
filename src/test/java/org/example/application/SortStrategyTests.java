@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Comparator;
 
 import org.example.application.comparators.NumberBusComparator;
+import org.example.application.sorting.BubbleSortStrategy;
+import org.example.application.sorting.QuickSortStrategy;
+import org.example.application.sorting.SelectionSortStrategy;
+import org.example.application.sorting.SortStrategy;
 import org.example.domain.Bus;
 import org.example.infrastructure.CustomList;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package org.example.fill;
 
-import org.example.Bus;
+import org.example.domain.Bus;
 
 import java.util.Scanner;
 

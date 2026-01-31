@@ -1,4 +1,4 @@
-package org.example.application;
+package org.example.application.sorting;
 
 public class SortStrategyFactory {
 
