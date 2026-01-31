@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.example.domain.Bus;
 import org.example.fill.FillBus;
 import org.example.fill.FillBusManually;
+import org.example.infrastructure.CustomList;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -23,11 +24,11 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             Bus busResult = Bus.createInstance(101,"Volvo", 15000.5);
 
-            assertEquals(buses[0], busResult);
+            assertEquals(busResult, buses.get(0));
         } finally {
             System.setIn(originalIn);
         }
@@ -41,15 +42,16 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             Bus busResult1 = Bus.createInstance(101,"Mercedes", 15000.5);
             Bus busResult2 = Bus.createInstance(102,"Volvo", 20000.0);
             Bus busResult3 = Bus.createInstance(103,"Mercedes", 14444);
 
-            assertEquals(buses[0], busResult1);
-            assertEquals(buses[1], busResult2);
-            assertEquals(buses[2], busResult3);
+            assertEquals(busResult1, buses.get(0));
+            assertEquals(busResult2, buses.get(1));
+            assertEquals(busResult3, buses.get(2));
+            assertEquals(3, buses.size());
         } finally {
             System.setIn(originalIn);
         }
@@ -63,12 +65,12 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             Bus busResult1 = Bus.createInstance(101,"Mercedes", 15000.5);
 
-            assertEquals(buses[0], busResult1);
-            assertEquals(buses.length, 1);
+            assertEquals(busResult1, buses.get(0));
+            assertEquals(1, buses.size());
         } finally {
             System.setIn(originalIn);
         }
@@ -82,7 +84,7 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             assertNull(buses);
         } finally {
@@ -98,7 +100,7 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             assertNull(buses);
         } finally {
@@ -114,7 +116,7 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             assertNull(buses);
         } finally {
@@ -130,7 +132,7 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             assertNull(buses);
         } finally {
@@ -146,7 +148,7 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             assertNull(buses);
         } finally {
@@ -162,7 +164,7 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             assertNull(buses);
         } finally {

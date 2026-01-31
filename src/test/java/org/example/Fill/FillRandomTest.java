@@ -3,6 +3,7 @@ package org.example.Fill;
 import org.example.domain.Bus;
 import org.example.fill.FillBus;
 import org.example.fill.FillBusRandom;
+import org.example.infrastructure.CustomList;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -24,9 +25,9 @@ public class FillRandomTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
-            assertEquals(buses.length, 3);
+            assertEquals(3, buses.size());
         } finally {
             System.setIn(originalIn);
         }
@@ -40,7 +41,7 @@ public class FillRandomTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             assertNull(buses);
         } finally {
@@ -56,7 +57,7 @@ public class FillRandomTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            Bus[] buses = fillBus.fill();
+            CustomList<Bus> buses = fillBus.fill();
 
             assertNull(buses);
         } finally {
