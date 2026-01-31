@@ -16,11 +16,9 @@ import org.example.infrastructure.CustomList;
  */
 public class BusServiceImpl implements Service<Bus> {
 
-    private final ImportService<Bus> importService;
     private final ExportService<Bus> exportService;
 
-    public BusServiceImpl(ImportService<Bus> importService, ExportService<Bus> exportService) {
-        this.importService = importService;
+    public BusServiceImpl(ExportService<Bus> exportService) {
         this.exportService = exportService;
     }
 
@@ -34,9 +32,17 @@ public class BusServiceImpl implements Service<Bus> {
 
     @Override
     public CustomList<Bus> read(InputType inputType) {
-        //importService.setStrategy(inputType);
         try {
-            return importService.load();
+            return BusInputStrategyFactory.getStrategy(inputType).loadData();
+        } catch (IOException e) {
+            throw new BusServiceException("Input error!");
+        }
+    }
+
+    @Override
+    public CustomList<Bus> streamRead(InputType inputType) {
+        try {
+            return BusInputStrategyFactory.getStrategy(inputType).loadStreamData();
         } catch (IOException e) {
             throw new BusServiceException("Input error!");
         }

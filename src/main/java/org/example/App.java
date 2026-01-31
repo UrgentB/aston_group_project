@@ -1,10 +1,8 @@
 package org.example;
 
 import org.example.application.BusExportService;
-import org.example.application.BusImportService;
 import org.example.application.BusServiceImpl;
 import org.example.application.ExportService;
-import org.example.application.ImportService;
 import org.example.application.InputType;
 import org.example.application.Service;
 import org.example.application.sorting.SortAlgorithm;
@@ -18,28 +16,36 @@ public class App {
 
     public void run() {
 
-        final ImportService<Bus> importService = new BusImportService(null, null, null);
         final ExportService<Bus> exportService = new BusExportService(true);
 
         final ApplicationController applicationController = new ApplicationController();
-        final Service<Bus> service = new BusServiceImpl(importService, exportService);
+        final Service<Bus> service = new BusServiceImpl(exportService);
 
         while(true) {
             InputType inputType = applicationController.askInputType();
+            Boolean useStreams = applicationController.askBoolean("Использовать заполнение через стримы?");
             SortType sortType = applicationController.askSortType();
             SortAlgorithm sortAlgorithm = applicationController.askSortAlgorithm();
             SortCondition sortCondition = applicationController.askSortCondition();
-            Boolean performExport = applicationController.askExport();
+            Boolean performExport = applicationController.askBoolean("Экспортировать в файл?");
             if (performExport) {
                 exportService.setPath(applicationController.askString("Input output file path."));
             }
             
-            CustomList<Bus> buses = service.read(inputType);
+            CustomList<Bus> buses;
+            if (useStreams) {
+                buses = service.streamRead(inputType);
+            } else {
+                buses = service.read(inputType);
+            }
+            
             CustomList<Bus> sortedBuses = service.sort(buses, sortType, sortAlgorithm, sortCondition);
             // TODO: Add multithreading
             if (performExport) {
                 exportService.save(sortedBuses);
             }
+
+            applicationController.showList(sortedBuses);
             
         }        
     }

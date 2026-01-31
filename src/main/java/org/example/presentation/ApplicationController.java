@@ -8,6 +8,7 @@ import org.example.application.sorting.SortType;
 import org.example.domain.Bus;
 import org.example.exception.BusServiceException;
 import org.example.infrastructure.CustomList;
+import org.example.infrastructure.SingletonScanner;
 
 /**
  * Abstract controller class for the application.
@@ -16,7 +17,7 @@ import org.example.infrastructure.CustomList;
 
 public class ApplicationController {
 
-    private final Scanner sc = new Scanner(System.in);
+    private final Scanner sc = SingletonScanner.getScanner();
     
     public InputType askInputType() {
         System.out.println("Выберите способ заполнения коллекции.");
@@ -85,8 +86,8 @@ public class ApplicationController {
         };
     }
 
-    public Boolean askExport() {
-        System.out.println("Экспортировать в файл?");
+    public Boolean askBoolean(String message) {
+        System.out.println(message);
         int sortMode = askInteger("1. Да.\n2. Нет.\nСпособ → \n");
         return switch (sortMode) {
             case 1 -> true;

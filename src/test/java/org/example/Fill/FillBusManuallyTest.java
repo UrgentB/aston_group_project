@@ -1,9 +1,10 @@
 package org.example.Fill;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.example.domain.Bus;
+import org.example.exception.InvalidUserInputException;
 import org.example.fill.FillBus;
 import org.example.fill.FillBusManually;
 import org.example.infrastructure.CustomList;
@@ -84,9 +85,7 @@ public class FillBusManuallyTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            CustomList<Bus> buses = fillBus.fill();
-
-            assertNull(buses);
+            assertThrows(InvalidUserInputException.class, () -> fillBus.fill());
         } finally {
             System.setIn(originalIn);
         }
@@ -102,7 +101,7 @@ public class FillBusManuallyTest {
 
             CustomList<Bus> buses = fillBus.fill();
 
-            assertNull(buses);
+            assertEquals(0, buses.size());
         } finally {
             System.setIn(originalIn);
         }
@@ -118,7 +117,7 @@ public class FillBusManuallyTest {
 
             CustomList<Bus> buses = fillBus.fill();
 
-            assertNull(buses);
+            assertEquals(0, buses.size());
         } finally {
             System.setIn(originalIn);
         }
@@ -134,7 +133,7 @@ public class FillBusManuallyTest {
 
             CustomList<Bus> buses = fillBus.fill();
 
-            assertNull(buses);
+            assertEquals(0, buses.size());
         } finally {
             System.setIn(originalIn);
         }
@@ -150,7 +149,7 @@ public class FillBusManuallyTest {
 
             CustomList<Bus> buses = fillBus.fill();
 
-            assertNull(buses);
+            assertEquals(0, buses.size());
         } finally {
             System.setIn(originalIn);
         }
@@ -166,7 +165,7 @@ public class FillBusManuallyTest {
 
             CustomList<Bus> buses = fillBus.fill();
 
-            assertNull(buses);
+            assertEquals(0, buses.size());
         } finally {
             System.setIn(originalIn);
         }

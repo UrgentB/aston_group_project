@@ -28,6 +28,14 @@ public interface Service<T> {
     CustomList<T> read(InputType inputType);
 
     /**
+     * Reads data using the specified input type and streams.
+     * 
+     * @param inputType
+     * @return
+     */
+    CustomList<T> streamRead(InputType inputType);
+
+    /**
      * Writes the given CustomList data to the output.
      * @param data
      */

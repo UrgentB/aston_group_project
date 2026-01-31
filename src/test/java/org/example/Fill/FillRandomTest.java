@@ -1,6 +1,7 @@
 package org.example.Fill;
 
 import org.example.domain.Bus;
+import org.example.exception.InvalidUserInputException;
 import org.example.fill.FillBus;
 import org.example.fill.FillBusRandom;
 import org.example.infrastructure.CustomList;
@@ -10,7 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class FillRandomTest {
@@ -41,9 +42,7 @@ public class FillRandomTest {
         try {
             System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-            CustomList<Bus> buses = fillBus.fill();
-
-            assertNull(buses);
+            assertThrows(InvalidUserInputException.class, () -> fillBus.fill());
         } finally {
             System.setIn(originalIn);
         }
@@ -59,7 +58,7 @@ public class FillRandomTest {
 
             CustomList<Bus> buses = fillBus.fill();
 
-            assertNull(buses);
+            assertEquals(0, buses.size());
         } finally {
             System.setIn(originalIn);
         }

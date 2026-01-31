@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import org.example.domain.Bus;
 import org.example.fill.FillBusRandom;
+import org.example.fill.StreamFillBusRandom;
 import org.example.infrastructure.CustomList;
 
 public class RandomBusInputStrategyAdapter implements InputStrategy<Bus> {
 
+    private final StreamFillBusRandom streamFiller = new StreamFillBusRandom();
     private final FillBusRandom filler = new FillBusRandom();
 
     @Override
@@ -17,7 +19,7 @@ public class RandomBusInputStrategyAdapter implements InputStrategy<Bus> {
 
     @Override
     public CustomList<Bus> loadStreamData() throws IOException {
-        return filler.fill();
+        return streamFiller.fill();
     }
     
 }
