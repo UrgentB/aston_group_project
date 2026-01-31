@@ -1,7 +1,10 @@
 package org.example.fill;
 
 import org.example.domain.Bus;
+import org.example.infrastructure.CustomList;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class FillBusManually implements FillBus {
@@ -12,7 +15,7 @@ public class FillBusManually implements FillBus {
     private final String MES_PAGES = "Введите пробег автобуса: ";
     private final String MES_ERROR_BUILD = "Невозможно создать автобус с такими параметрами";
 
-    public Bus[] fill() {
+    public CustomList<Bus> fill() {
         Scanner in = new Scanner(System.in);
 
         Integer countBus = InputHelp.getIntField(MES_COUNT, in);
@@ -40,10 +43,10 @@ public class FillBusManually implements FillBus {
             }
         }
 
-        Bus[] buses_result = null;
+        CustomList<Bus> buses_result = null;
         if(j > 0) {
-            buses_result = new Bus[j];
-            System.arraycopy(buses, 0, buses_result, 0, j);
+            buses_result = new CustomList<>();
+            Arrays.stream(buses).filter(Objects::nonNull).forEach(buses_result::add);
         }
 
         return buses_result;
