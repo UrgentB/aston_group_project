@@ -19,7 +19,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testSuccessfulOneFill() {
-        String testInput = "1\n101\nVolvo\n15000,5\n";
+        String testInput = "1\n101\nVolvo\n15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -33,7 +33,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testSuccessfulLotFill() {
-        String testInput = "3\n101\nMercedes\n15000,5\n102\nVolvo\n20000,0\n103\nMercedes\n14444\n";
+        String testInput = "3\n101\nMercedes\n15000.5\n102\nVolvo\n20000.0\n103\nMercedes\n14444\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -52,7 +52,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testSuccessfulOneOfTwoFill() {
-        String testInput = "2\n101\nMercedes\n15000,5\n-102\nVolvo\n20000,0\n";
+        String testInput = "2\n101\nMercedes\n15000.5\n-102\nVolvo\n20000.0\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -67,7 +67,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testInvalidCountFailedFill() {
-        String testInput = "d1d\n101\nMercedes\n15000,5\n";
+        String testInput = "d1d\n101\nMercedes\n15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -77,7 +77,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testNegativeCountFailedFill() {
-        String testInput = "-1\n101\nMercedes\n15000,5\n";
+        String testInput = "-1\n101\nMercedes\n15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -89,7 +89,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testInvalidNumberFailedFill() {
-        String testInput = "1\n10d1\nMercedes\n15000,5\n";
+        String testInput = "1\n10d1\nMercedes\n15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -113,7 +113,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testNegativeMileageFailedFill() {
-        String testInput = "1\n101\nMercedes\n-15000,5\n";
+        String testInput = "1\n101\nMercedes\n-15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -124,7 +124,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testEmptyModelFailedFill() {
-        String testInput = "1\n101\n \n15000,5\n";
+        String testInput = "1\n101\n \n15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 

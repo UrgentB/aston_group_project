@@ -1,7 +1,6 @@
 package org.example.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.example.Read_From_File.ReadFromTxtFile;
-import org.example.Validator.BusValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
