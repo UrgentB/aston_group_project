@@ -17,7 +17,7 @@ import org.example.infrastructure.SingletonScanner;
 
 public class ApplicationController {
 
-    private final Scanner sc = SingletonScanner.getScanner();
+    private final Scanner sc = SingletonScanner.getInstance().getScanner();
     
     public InputType askInputType() {
         System.out.println("Выберите способ заполнения коллекции.");

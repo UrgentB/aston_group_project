@@ -15,33 +15,27 @@ public enum SortType {
     /**
      * Sorting by number.
      */
-    SORT_NUMBER("Сортировать по номеру.", new NumberBusComparator()),
+    SORT_NUMBER(new NumberBusComparator()),
     /**
      * Sorting by model.
      */
-    SORT_MODEL("Сортировать по модели.", new ModelBusComparator()),
+    SORT_MODEL(new ModelBusComparator()),
     /**
      * Sorting by mileage.
      */
-    SORT_MILEAGE("Сортировать по пробегу.", new MileageBusComparator()),
+    SORT_MILEAGE(new MileageBusComparator()),
     /**
      * Sort all fields (basic)
      */
-    SORT_BASIC("Сортировать по всем полям.", new BasicBusComparator());
+    SORT_BASIC(new BasicBusComparator());
 
-    private final String title;
     private final Comparator<Bus> comparator;
 
-    SortType(String title, Comparator<Bus> comparator) {
-        this.title = title;
+    SortType(Comparator<Bus> comparator) {
         this.comparator = comparator;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public Comparator<Bus> geComparator() {
+    public Comparator<Bus> getComparator() {
         return comparator;
     }
 }

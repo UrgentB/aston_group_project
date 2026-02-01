@@ -1,6 +1,7 @@
 package org.example.fill;
 
 import org.example.domain.Bus;
+import org.example.exception.InvalidUserInputException;
 import org.example.infrastructure.CustomList;
 
 import java.util.Arrays;
@@ -19,6 +20,10 @@ public class StreamFillBusManually implements FillBus {
         Scanner in = new Scanner(System.in);
 
         Integer countBus = InputHelp.getIntField(MES_COUNT, in);
+
+        if (countBus == null || countBus < 0) {
+            throw new InvalidUserInputException("Invalid bus count!");
+        }
 
         Bus[] buses = new Bus[countBus];
 

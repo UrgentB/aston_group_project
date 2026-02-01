@@ -1,14 +1,22 @@
 package org.example.infrastructure;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class SingletonScanner {
-    private static Scanner scanner;
+    private Scanner scanner;
 
-    public static Scanner getScanner() {
-        if (scanner == null) {
-            scanner = new Scanner(System.in);
-        }
+    private static SingletonScanner singletonScanner = new SingletonScanner(System.in);
+
+    private SingletonScanner(InputStream inputStream) {
+        scanner = new Scanner(inputStream);
+    }
+
+    public Scanner getScanner() {
         return scanner;
+    }
+
+    public static SingletonScanner getInstance() {
+        return singletonScanner;
     }
 }

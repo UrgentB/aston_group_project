@@ -47,7 +47,7 @@ class BusExportServiceTest {
     @Test
     @DisplayName("Сохранение данных в файл с режимом дополнения")
     void testSaveWithAppendMode() throws IOException {
-        exportService = new BusExportService(false);
+        exportService = new BusExportService(true);
         exportService.setPath(testFilePath);
         Bus bus1 = new Bus(111, "Volvo", 12451D);
         busList.add(bus1);

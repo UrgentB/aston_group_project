@@ -10,23 +10,27 @@ public enum InputType {
     /**
      * Input generated randomly.
      */
-    INPUT_RANDOM(new RandomBusInputStrategyAdapter()),
+    INPUT_RANDOM {
+        public InputStrategy<Bus> getStrategy() {
+            return new RandomBusInputStrategyAdapter();
+        }
+    },
     /**
      * Input provided manually by the user.
      */
-    INPUT_MANUAL(new ManualBusInputStrategyAdapter()),
+    INPUT_MANUAL {
+        public InputStrategy<Bus> getStrategy() {
+            return new ManualBusInputStrategyAdapter();
+        }
+    },
     /**
      * Input read from a file.
      */
-    INPUT_FROM_FILE(new FileBusInputStrategyAdapter());
+    INPUT_FROM_FILE {
+        public InputStrategy<Bus> getStrategy() {
+            return new FileBusInputStrategyAdapter();
+        }
+    };
 
-    private final InputStrategy<Bus> inputStrategy;
-
-    private InputType(InputStrategy<Bus> inputStrategy) {
-        this.inputStrategy = inputStrategy;
-    }
-
-    public InputStrategy<Bus> getStrategy() {
-        return inputStrategy;
-    }
+    public abstract InputStrategy<Bus> getStrategy();
 }

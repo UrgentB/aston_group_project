@@ -16,7 +16,7 @@ public enum SortAlgorithm {
         this.factory = factory;
     }
 
-    public SortStrategy<Bus> create(Comparator<Bus> conparator) {
-        return factory.apply(conparator);
+    public SortStrategy<Bus> create(Comparator<Bus> comparator) {
+        return factory.apply(comparator);
     }
 }

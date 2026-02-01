@@ -3,6 +3,7 @@ package org.example.application;
 import java.io.IOException;
 import java.util.Comparator;
 
+import org.example.application.sorting.ConditionalSortStrategy;
 import org.example.application.sorting.SortAlgorithm;
 import org.example.application.sorting.SortCondition;
 import org.example.application.sorting.SortStrategy;
@@ -24,16 +25,16 @@ public class BusServiceImpl implements Service<Bus> {
 
     @Override
     public CustomList<Bus> sort(CustomList<Bus> data, SortType sortType, SortAlgorithm sortAlgorithm, SortCondition sortCondition) {
-        Comparator<Bus> comparator = sortType.geComparator();
+        Comparator<Bus> comparator = sortType.getComparator();
         SortStrategy<Bus> sortStrategy = sortAlgorithm.create(comparator);
-        sortStrategy.sort(data);
+        new ConditionalSortStrategy<Bus>(sortStrategy, sortCondition.getPredicate()).sort(data);
         return data;
     }
 
     @Override
     public CustomList<Bus> read(InputType inputType) {
         try {
-            return BusInputStrategyFactory.getStrategy(inputType).loadData();
+            return inputType.getStrategy().loadData();
         } catch (IOException e) {
             throw new BusServiceException("Input error!");
         }
@@ -42,7 +43,7 @@ public class BusServiceImpl implements Service<Bus> {
     @Override
     public CustomList<Bus> streamRead(InputType inputType) {
         try {
-            return BusInputStrategyFactory.getStrategy(inputType).loadStreamData();
+            return inputType.getStrategy().loadStreamData();
         } catch (IOException e) {
             throw new BusServiceException("Input error!");
         }

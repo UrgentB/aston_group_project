@@ -8,5 +8,5 @@ public interface ImportService<T> {
     
     CustomList<T> load() throws IOException;
 
-    CustomList<T> streamLoad() throws IOException; 
+    CustomList<T> streamLoad() throws IOException;
 }
