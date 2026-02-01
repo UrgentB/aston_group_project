@@ -5,10 +5,10 @@ import org.example.exception.InvalidUserInputException;
 import org.example.fill.FillBus;
 import org.example.fill.StreamFillBusRandom;
 import org.example.infrastructure.CustomList;
+import org.example.infrastructure.SingletonScanner;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -22,43 +22,28 @@ public class StreamFillRandomTest {
     public void testSuccessfulFill() {
         String testInput = "3\n";
 
-        InputStream originalIn = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(testInput.getBytes()));
+        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes())); 
 
-            CustomList<Bus> buses = fillBus.fill();
+        CustomList<Bus> buses = fillBus.fill();
 
-            assertEquals(3, buses.size());
-        } finally {
-            System.setIn(originalIn);
-        }
+        assertEquals(3, buses.size());
     }
 
     @Test
     public void testInvalidCountFailedFill() {
         String testInput = "13f3d1\n";
 
-        InputStream originalIn = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(testInput.getBytes()));
+        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
-            assertThrows(InvalidUserInputException.class, () -> fillBus.fill());
-        } finally {
-            System.setIn(originalIn);
-        }
+        assertThrows(InvalidUserInputException.class, () -> fillBus.fill());
     }
 
     @Test
     public void testNegativeCountFailedFill() {
         String testInput = "-10\n";
 
-        InputStream originalIn = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(testInput.getBytes()));
+        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
             assertThrows(InvalidUserInputException.class, () -> fillBus.fill());
-        } finally {
-            System.setIn(originalIn);
-        }
     }
 }

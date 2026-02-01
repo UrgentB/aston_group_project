@@ -3,6 +3,7 @@ package org.example.fill;
 import org.example.domain.Bus;
 import org.example.exception.InvalidUserInputException;
 import org.example.infrastructure.CustomList;
+import org.example.infrastructure.SingletonScanner;
 
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class FillBusManually implements FillBus {
     private final String MES_ERROR_BUILD = "Невозможно создать автобус с такими параметрами";
 
     public CustomList<Bus> fill() {
-        Scanner in = new Scanner(System.in);
+        Scanner in = SingletonScanner.getInstance().getScanner();
 
         Integer countBus = InputHelp.getIntField(MES_COUNT, in);
 

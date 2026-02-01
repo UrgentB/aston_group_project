@@ -10,7 +10,6 @@ import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -19,6 +18,7 @@ import java.util.List;
 import org.example.Validator.BusValidator;
 import org.example.domain.Bus;
 import org.example.infrastructure.CustomList;
+import org.example.infrastructure.SingletonScanner;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -37,17 +37,12 @@ public class InputStrategyTests {
         InputStrategy<Bus> inputStrategy = InputType.INPUT_MANUAL.getStrategy();
         String testInput = "1\n101\nVolvo\n15000,5\n";
 
-        InputStream originalIn = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(testInput.getBytes()));
-            
-            CustomList<Bus> buses = inputStrategy.loadData();
+        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
+        
+        CustomList<Bus> buses = inputStrategy.loadData();
 
-            Bus busResult = Bus.createInstance(101,"Volvo", 15000.5);
-            assertEquals(busResult, buses.get(0));
-        } finally {
-            System.setIn(originalIn);
-        }
+        Bus busResult = Bus.createInstance(101,"Volvo", 15000.5);
+        assertEquals(busResult, buses.get(0));
     }
 
     @Test
@@ -55,17 +50,13 @@ public class InputStrategyTests {
         InputStrategy<Bus> inputStrategy = InputType.INPUT_MANUAL.getStrategy();
         String testInput = "1\n101\nVolvo\n15000,5\n";
 
-        InputStream originalIn = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(testInput.getBytes()));
+        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
-            CustomList<Bus> buses = inputStrategy.loadStreamData();
+        CustomList<Bus> buses = inputStrategy.loadStreamData();
 
-            Bus busResult = Bus.createInstance(101, "Volvo", 15000.5);
-            assertEquals(busResult, buses.get(0));
-        } finally {
-            System.setIn(originalIn);
-        }
+        Bus busResult = Bus.createInstance(101, "Volvo", 15000.5);
+        assertEquals(busResult, buses.get(0));
+
     }
 
     @Test
@@ -73,16 +64,12 @@ public class InputStrategyTests {
         String testInput = "3\n";
         InputStrategy<Bus> inputStrategy = InputType.INPUT_RANDOM.getStrategy();
 
-        InputStream originalIn = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(testInput.getBytes()));
+        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
-            CustomList<Bus> buses = inputStrategy.loadData();
+        CustomList<Bus> buses = inputStrategy.loadData();
 
-            assertEquals(3, buses.size());
-        } finally {
-            System.setIn(originalIn);
-        }
+        assertEquals(3, buses.size());
+
     }
 
     @Test
@@ -90,16 +77,12 @@ public class InputStrategyTests {
         String testInput = "3\n";
         InputStrategy<Bus> inputStrategy = InputType.INPUT_RANDOM.getStrategy();
 
-        InputStream originalIn = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(testInput.getBytes()));
+        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
-            CustomList<Bus> buses = inputStrategy.loadData();
+        CustomList<Bus> buses = inputStrategy.loadData();
 
-            assertEquals(3, buses.size());
-        } finally {
-            System.setIn(originalIn);
-        }
+        assertEquals(3, buses.size());
+
     }
 
     @Test

@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class SingletonScanner {
     private Scanner scanner;
 
-    private static SingletonScanner singletonScanner = new SingletonScanner(System.in);
+    private static SingletonScanner instance = new SingletonScanner(System.in);
 
     private SingletonScanner(InputStream inputStream) {
         scanner = new Scanner(inputStream);
@@ -17,6 +17,13 @@ public class SingletonScanner {
     }
 
     public static SingletonScanner getInstance() {
-        return singletonScanner;
+        if (instance == null) {
+            instance = new SingletonScanner(System.in);
+        }
+        return instance;
+    }
+
+    public static void reset(InputStream inputStream) {
+        instance = new SingletonScanner(inputStream);
     }
 }

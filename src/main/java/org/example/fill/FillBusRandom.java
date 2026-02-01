@@ -3,6 +3,7 @@ package org.example.fill;
 import org.example.domain.Bus;
 import org.example.exception.InvalidUserInputException;
 import org.example.infrastructure.CustomList;
+import org.example.infrastructure.SingletonScanner;
 
 import java.util.Scanner;
 import java.util.Random;
@@ -20,7 +21,7 @@ public class FillBusRandom implements FillBus {
 
     @Override
     public CustomList<Bus> fill() {
-        Scanner in = new Scanner(System.in);
+        Scanner in = SingletonScanner.getInstance().getScanner();
 
         Integer countBus = InputHelp.getIntField(MES_COUNT, in);
 

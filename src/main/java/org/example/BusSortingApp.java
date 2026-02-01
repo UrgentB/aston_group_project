@@ -1,11 +1,13 @@
 package org.example;
 import org.example.domain.Bus;
+import org.example.infrastructure.SingletonScanner;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class BusSortingApp {
 
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = SingletonScanner.getInstance().getScanner();
 
     public static void main(String[] args) {
         new App().run();
