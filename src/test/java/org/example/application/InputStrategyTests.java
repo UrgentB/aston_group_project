@@ -35,7 +35,7 @@ public class InputStrategyTests {
     @Test
     public void testPositiveManualBusInputStrategyAdapter() throws IOException {
         InputStrategy<Bus> inputStrategy = InputType.INPUT_MANUAL.getStrategy();
-        String testInput = "1\n101\nVolvo\n15000,5\n";
+        String testInput = "1\n101\nVolvo\n15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
         
@@ -48,7 +48,7 @@ public class InputStrategyTests {
     @Test
     public void testPositiveManualBusInputStrategyAdapterStreams() throws IOException {
         InputStrategy<Bus> inputStrategy = InputType.INPUT_MANUAL.getStrategy();
-        String testInput = "1\n101\nVolvo\n15000,5\n";
+        String testInput = "1\n101\nVolvo\n15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 

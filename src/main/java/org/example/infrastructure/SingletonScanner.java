@@ -1,6 +1,7 @@
 package org.example.infrastructure;
 
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class SingletonScanner {
@@ -10,6 +11,7 @@ public class SingletonScanner {
 
     private SingletonScanner(InputStream inputStream) {
         scanner = new Scanner(inputStream);
+        scanner.useLocale(Locale.US);
     }
 
     public Scanner getScanner() {

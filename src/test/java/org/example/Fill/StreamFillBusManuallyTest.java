@@ -20,7 +20,7 @@ public class StreamFillBusManuallyTest {
 
     @Test
     public void testSuccessfulOneFill() {
-        String testInput = "1\n101\nVolvo\n15000,5\n";
+        String testInput = "1\n101\nVolvo\n15000.5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -33,7 +33,7 @@ public class StreamFillBusManuallyTest {
 
     @Test
     public void testSuccessfulLotFill() {
-        String testInput = "3\n101\nMercedes\n15000,5\n102\nVolvo\n20000,0\n103\nMercedes\n14444\n";
+        String testInput = "3\n101\nMercedes\n15000.5\n102\nVolvo\n20000.0\n103\nMercedes\n14444\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -51,7 +51,7 @@ public class StreamFillBusManuallyTest {
 
     @Test
     public void testSuccessfulOneOfTwoFill() {
-        String testInput = "2\n101\nMercedes\n15000,5\n-102\nVolvo\n20000,0\n";
+        String testInput = "2\n101\nMercedes\n15000.5\n-102\nVolvo\n20000.0\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
@@ -94,7 +94,7 @@ public class StreamFillBusManuallyTest {
 
     @Test
     public void testInvalidMileageFailedFill() {
-        String testInput = "1\n101\nMercedes\n15000.5\n";
+        String testInput = "1\n101\nMercedes\n15000,5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 

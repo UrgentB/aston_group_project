@@ -101,7 +101,7 @@ public class FillBusManuallyTest {
 
     @Test
     public void testInvalidMileageFailedFill() {
-        String testInput = "1\n101\nMercedes\n15000.5\n";
+        String testInput = "1\n101\nMercedes\n15000,5\n";
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
