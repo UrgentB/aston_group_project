@@ -1,5 +1,7 @@
 package org.example.application;
 
+import java.io.IOException;
+
 import org.example.infrastructure.CustomList;
 
 /**
@@ -17,6 +19,8 @@ public interface InputStrategy<T> {
      * @return the loaded data
      */
 
-    CustomList<T> loadData();
+    CustomList<T> loadData() throws IOException;
+
+    CustomList<T> loadStreamData() throws IOException;
 
 }

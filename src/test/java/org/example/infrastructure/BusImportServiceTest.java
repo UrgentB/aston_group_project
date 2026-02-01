@@ -7,6 +7,7 @@ import org.example.domain.Bus;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.io.TempDir;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 import java.io.*;
@@ -25,10 +26,14 @@ class BusImportServiceTest {
 
     @BeforeEach
     void setUp() {
+        importService = BusImportService.getInstance();
+        importService.reset();
         testFilePath = tempDir.resolve("test_import.txt").toString();
         readableMock = mock(Readable.class);
         busValidatorMock = mock(BusValidator.class);
-        importService = new BusImportService(readableMock, busValidatorMock, testFilePath);
+        importService.setReadable(readableMock);
+        importService.setValidator(busValidatorMock);
+        importService.setPath(testFilePath);
     }
 
     @Test

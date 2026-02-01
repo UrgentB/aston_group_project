@@ -12,8 +12,12 @@ public class BusExportService implements ExportService<Bus>{
     String path;
     Boolean fileWritingRegime;
 
-    public BusExportService(Boolean fileWritingRegime, String path) {
+    public BusExportService(Boolean fileWritingRegime) {
         this.fileWritingRegime = fileWritingRegime;
+    }
+
+    @Override
+    public void setPath(String path) {
         this.path = path;
     }
 

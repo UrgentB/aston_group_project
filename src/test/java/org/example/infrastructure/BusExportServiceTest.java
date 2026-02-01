@@ -27,7 +27,8 @@ class BusExportServiceTest {
     @Test
     @DisplayName("Сохранение данных в файл с режимом перезаписи")
     void testSaveWithOverwriteMode() throws IOException {
-        exportService = new BusExportService(false, testFilePath);
+        exportService = new BusExportService(false);
+        exportService.setPath(testFilePath);
         Bus bus1 = new Bus(111, "Volvo", 12451D);
         Bus bus2 = new Bus(123, "Паз", 415125D);
         busList.add(bus1);
@@ -46,7 +47,8 @@ class BusExportServiceTest {
     @Test
     @DisplayName("Сохранение данных в файл с режимом дополнения")
     void testSaveWithAppendMode() throws IOException {
-        exportService = new BusExportService(true, testFilePath);
+        exportService = new BusExportService(true);
+        exportService.setPath(testFilePath);
         Bus bus1 = new Bus(111, "Volvo", 12451D);
         busList.add(bus1);
         exportService.save(busList);
@@ -66,7 +68,8 @@ class BusExportServiceTest {
     @Test
     @DisplayName("Сохранение пустого списка")
     void testSaveEmptyList() throws IOException {
-        exportService = new BusExportService(false, testFilePath);
+        exportService = new BusExportService(false);
+        exportService.setPath(testFilePath);
 
         exportService.save(busList);
 
@@ -78,7 +81,8 @@ class BusExportServiceTest {
     @DisplayName("Обработка IOException при записи")
     void testSaveWithIOException() {
         String invalidPath = "/invalid/path/buses.txt";
-        exportService = new BusExportService(false, invalidPath);
+        exportService = new BusExportService(false);
+        exportService.setPath(invalidPath);
         Bus bus = new Bus(123, "Паз", 415125D);
         busList.add(bus);
 
@@ -88,7 +92,8 @@ class BusExportServiceTest {
     @Test
     @DisplayName("Проверка корректности форматирования данных")
     void testDataFormatting() throws IOException {
-        exportService = new BusExportService(false, testFilePath);
+        exportService = new BusExportService(false);
+        exportService.setPath(testFilePath);
         Bus bus = new Bus(123, "Паз", 415125D);
         busList.add(bus);
 
@@ -101,7 +106,8 @@ class BusExportServiceTest {
     @Test
     @DisplayName("Сохранение большого количества данных")
     void testSaveLargeDataSet() throws IOException {
-        exportService = new BusExportService(false, testFilePath);
+        exportService = new BusExportService(false);
+        exportService.setPath(testFilePath);
         int count = 1000;
         for (int i = 0; i < count; i++) {
             busList.add(new Bus(i, "Паз_" + i,  12000D + i));

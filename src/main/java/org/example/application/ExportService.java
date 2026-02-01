@@ -6,4 +6,5 @@ public interface ExportService<T> {
 
     public void save(CustomList<T> data);
 
+    public void setPath(String path);
 }

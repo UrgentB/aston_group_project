@@ -2,8 +2,6 @@ package org.example.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Comparator;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BusTest {
@@ -65,29 +63,5 @@ class BusTest {
             new Bus.Builder().mileage(-100.0).build();
         });
         assertEquals("Mileage cannot be negative", exception.getMessage());
-    }
-
-    //Тест compare по номеру
-    @Test
-    void compare_shouldCompareByNumber() {
-        Bus bus1 = Bus.createInstance(21, "Solaris", 461292.0);
-        Bus bus2 = Bus.createInstance(43, "МАЗ", 256129.0);
-
-        assertTrue(bus1.compare(bus1, bus2) < 0);  // 21 < 43
-        assertTrue(bus1.compare(bus2, bus1) > 0);
-        assertEquals(0, bus1.compare(bus1, bus1));
-    }
-
-    //Тест fullComparator с реальными данными
-    @Test
-    void fullComparator_shouldSortByAllFields() {
-        Bus bus1 = Bus.createInstance(111, "ЛиАЗ", 659292.0);
-        Bus bus2 = Bus.createInstance(111, "ЛиАЗ", 120512.0);  // тот же номер и модель, разный mileage
-        Bus bus3 = Bus.createInstance(111, "ПАЗ", 659292.0);   // тот же номер, другая модель
-
-        Comparator<Bus> comp = Bus.fullComparator();
-
-        assertTrue(comp.compare(bus1, bus2) > 0);  // mileage 659292 > 120512
-        assertTrue(comp.compare(bus2, bus3) < 0);  // model ЛиАЗ < ПАЗ
     }
 }

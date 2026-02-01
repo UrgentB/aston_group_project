@@ -3,7 +3,7 @@ package org.example.Fill;
 import org.example.domain.Bus;
 import org.example.exception.InvalidUserInputException;
 import org.example.fill.FillBus;
-import org.example.fill.FillBusRandom;
+import org.example.fill.StreamFillBusRandom;
 import org.example.infrastructure.CustomList;
 import org.example.infrastructure.SingletonScanner;
 import org.junit.jupiter.api.Test;
@@ -14,20 +14,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-public class FillRandomTest {
+public class StreamFillRandomTest {
 
-    private final FillBus fillBus = new FillBusRandom();
+    private final FillBus fillBus = new StreamFillBusRandom();
 
     @Test
     public void testSuccessfulFill() {
         String testInput = "3\n";
 
-        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
+        SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes())); 
 
         CustomList<Bus> buses = fillBus.fill();
 
         assertEquals(3, buses.size());
-
     }
 
     @Test
@@ -45,9 +44,6 @@ public class FillRandomTest {
 
         SingletonScanner.reset(new ByteArrayInputStream(testInput.getBytes()));
 
-        CustomList<Bus> buses = fillBus.fill();
-
-        assertEquals(0, buses.size());
-
+            assertThrows(InvalidUserInputException.class, () -> fillBus.fill());
     }
 }

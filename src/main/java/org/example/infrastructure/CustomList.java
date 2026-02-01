@@ -1,6 +1,9 @@
 package org.example.infrastructure;
 
 import java.util.Iterator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class CustomList<T> implements Iterable<T> {
 
@@ -37,6 +40,10 @@ public class CustomList<T> implements Iterable<T> {
         return size;
     }
 
+    public Stream<T> stream() {
+        return StreamSupport.stream(this.spliterator(), false);
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new CustomListIterator();
@@ -65,5 +72,9 @@ public class CustomList<T> implements Iterable<T> {
             }
             array = newArray;
         }
+    }
+
+    public String toString() {
+        return this.stream().map(e -> e.toString()).collect(Collectors.joining("\n"));
     }
 }

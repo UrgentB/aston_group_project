@@ -5,9 +5,11 @@ import org.example.exception.InvalidUserInputException;
 import org.example.infrastructure.CustomList;
 import org.example.infrastructure.SingletonScanner;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
-public class FillBusManually implements FillBus {
+public class StreamFillBusManually implements FillBus {
 
     private final String MES_COUNT = "Ведите число автобусов: ";
     private final String MES_AUTHOR = "Введите номер автобуса: ";
@@ -20,26 +22,35 @@ public class FillBusManually implements FillBus {
 
         Integer countBus = InputHelp.getIntField(MES_COUNT, in);
 
-        if (countBus == null) {
+        if (countBus == null || countBus < 0) {
             throw new InvalidUserInputException("Invalid bus count!");
         }
 
-        CustomList<Bus> buses = new CustomList<Bus>();
+        Bus[] buses = new Bus[countBus];
 
-        for (int i = 0; i < countBus; i++) {
+        int j = 0;
+
+        for(int i = 0; i < countBus; i++) {
             Integer number = InputHelp.getIntField(MES_AUTHOR, in);
 
             String model = InputHelp.getStringField(MES_TITLE, in);
 
             Double mileage = InputHelp.getDoubleField(MES_PAGES, in);
 
-            if (CheckHelp.busCheck(number, model, mileage)) {
-                buses.add(Bus.createInstance(number, model, mileage));
+            if(CheckHelp.busCheck(number, model, mileage)) {
+                buses[j] = Bus.createInstance(number, model, mileage);
+                j++;
             } else {
                 System.out.println(MES_ERROR_BUILD);
             }
         }
 
-        return buses;
+        CustomList<Bus> buses_result = null;
+        if(j > 0) {
+            buses_result = new CustomList<>();
+            Arrays.stream(buses).filter(Objects::nonNull).forEach(buses_result::add);
+        }
+
+        return buses_result;
     }
 }

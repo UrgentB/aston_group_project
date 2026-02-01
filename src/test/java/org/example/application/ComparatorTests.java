@@ -2,6 +2,7 @@ package org.example.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.example.application.comparators.BasicBusComparator;
 import org.example.application.comparators.MileageBusComparator;
 import org.example.application.comparators.ModelBusComparator;
 import org.example.application.comparators.NumberBusComparator;
@@ -35,5 +36,12 @@ public class ComparatorTests {
         Bus bus2 = new Bus();
         bus2.setMileage(2.2);
         assertEquals(new MileageBusComparator().compare(bus1, bus2), bus1.getMileage().compareTo(bus2.getMileage()));
+    }
+
+    @Test
+    public void testPositiveBasicBusComparator() {
+        Bus bus1 = new Bus(1, "model", 1.1);
+        Bus bus2 = new Bus(1, "model", 1.2);
+        assertEquals(new BasicBusComparator().compare(bus1, bus2), bus1.compareTo(bus2));
     }
 }

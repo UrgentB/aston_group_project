@@ -46,4 +46,21 @@ public class CustomListTests {
             assertEquals(list1.get(i++), iter.next());
         }
     }
+
+    @Test
+    public void testPositiveCustomListToString() {
+        CustomList<Integer> list = new CustomList<>();
+        list.add(5);
+
+        assertEquals("5", list.toString());
+    }
+
+    @Test
+    public void testPositiveCustomListSet() {
+        CustomList<Bus> list = new CustomList<>(1);
+        Bus bus = new Bus();
+        list.set(0, bus);
+
+        assertEquals(bus, list.get(0));
+    }
 }

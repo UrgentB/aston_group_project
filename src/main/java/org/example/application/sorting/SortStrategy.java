@@ -1,7 +1,5 @@
 package org.example.application.sorting;
 
-import java.util.Comparator;
-
 import org.example.infrastructure.CustomList;
 
 /**
@@ -9,22 +7,7 @@ import org.example.infrastructure.CustomList;
  * @param <T> the type of elements in the CustomList
  */
 
-public abstract class SortStrategy<T> {
-
-    /**
-     * Comparator used for sorting.
-     */
-
-    protected Comparator<T> comparator;
-
-    /**
-     * Constructor accepting a comparator.
-     * @param comparator
-     */
-
-    protected SortStrategy(Comparator<T> comparator) {
-        this.comparator = comparator;
-    }
+public interface SortStrategy<T> {
 
     /**
      * Sorts the given CustomList.

@@ -93,4 +93,13 @@ public class BusValidatorTest {
 
         assertNull(bus);
     }
+
+    @Test
+    public void testEmptyLineFailedParcer() {
+        String line = "     ";
+
+        Bus bus = busValidator.parcer(line);
+
+        assertNull(bus);
+    }
 }
