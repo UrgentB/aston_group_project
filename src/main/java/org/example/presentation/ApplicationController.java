@@ -30,7 +30,7 @@ public class ApplicationController {
 
     public SortType askSortType() {
         System.out.println("Выберите способ сортировки коллекции.");
-        int sortMode = askInteger("1. По всем полям.\n2. По номеру.\n3. По модели.\\n" + //
+        int sortMode = askInteger("1. По всем полям.\n2. По номеру.\n3. По модели.\n" + //
                         "4. По пробегу.\nСпособ → \n");
         return switch (sortMode) {
             case 1 -> SortType.SORT_BASIC;
