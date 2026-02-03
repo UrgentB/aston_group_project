@@ -1,0 +1,9 @@
+Bus{number=1, model='1', mileage=1,0}
+Bus{number=1, model='1', mileage=1,0}
+Bus{number=1, model='1', mileage=1,0}
+Bus{number=1, model='1', mileage=1,0}
+Bus{number=1, model='1', mileage=1,0}
+Bus{number=1, model='1', mileage=1,0}
+Bus{number=12, model='3', mileage=34,0}
+Bus{number=45, model='4', mileage=42,0}
+Bus{number=34, model='5', mileage=55,0}

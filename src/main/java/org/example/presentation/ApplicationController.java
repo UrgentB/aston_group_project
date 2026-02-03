@@ -5,9 +5,7 @@ import org.example.application.InputType;
 import org.example.application.sorting.SortAlgorithm;
 import org.example.application.sorting.SortCondition;
 import org.example.application.sorting.SortType;
-import org.example.domain.Bus;
 import org.example.exception.BusServiceException;
-import org.example.infrastructure.CustomList;
 import org.example.infrastructure.SingletonScanner;
 
 /**
@@ -96,7 +94,7 @@ public class ApplicationController {
         };
     }
 
-    public void showList(CustomList<Bus> buses) {
-        System.out.println(buses.toString());
+    public void show(String message) {
+        System.out.println(message);
     }
 }
