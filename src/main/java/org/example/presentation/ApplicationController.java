@@ -5,9 +5,7 @@ import org.example.application.InputType;
 import org.example.application.sorting.SortAlgorithm;
 import org.example.application.sorting.SortCondition;
 import org.example.application.sorting.SortType;
-import org.example.domain.Bus;
 import org.example.exception.BusServiceException;
-import org.example.infrastructure.CustomList;
 import org.example.infrastructure.SingletonScanner;
 
 /**
@@ -32,7 +30,7 @@ public class ApplicationController {
 
     public SortType askSortType() {
         System.out.println("Выберите способ сортировки коллекции.");
-        int sortMode = askInteger("1. По всем полям.\n2. По номеру.\n3. По модели.\\n" + //
+        int sortMode = askInteger("1. По всем полям.\n2. По номеру.\n3. По модели.\n" + //
                         "4. По пробегу.\nСпособ → \n");
         return switch (sortMode) {
             case 1 -> SortType.SORT_BASIC;
@@ -96,7 +94,7 @@ public class ApplicationController {
         };
     }
 
-    public void showList(CustomList<Bus> buses) {
-        System.out.println(buses.toString());
+    public void show(String message) {
+        System.out.println(message);
     }
 }

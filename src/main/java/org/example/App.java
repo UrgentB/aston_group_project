@@ -14,6 +14,7 @@ import org.example.application.sorting.SortCondition;
 import org.example.application.sorting.SortType;
 import org.example.domain.Bus;
 import org.example.infrastructure.CustomList;
+import org.example.infrastructure.SingletonScanner;
 import org.example.presentation.ApplicationController;
 
 public class App {
@@ -35,22 +36,23 @@ public class App {
             InputType inputType = applicationController.askInputType();
             Boolean useStreams = applicationController.askBoolean("Использовать заполнение через стримы?");
             if (inputType == InputType.INPUT_FROM_FILE) {
-                inputPath = applicationController.askString("Введите путь к файлу: ");
+                inputPath = applicationController.askString("Введите путь к файлу ввода: ");
                 importService.setPath(inputPath);
             }
-            SortType sortType = applicationController.askSortType();
-            SortAlgorithm sortAlgorithm = applicationController.askSortAlgorithm();
-            SortCondition sortCondition = applicationController.askSortCondition();
-            Boolean performExport = applicationController.askBoolean("Экспортировать в файл?");
-            if (performExport) {
-                exportService.setPath(applicationController.askString("Input output file path."));
-            }
-            
+
             CustomList<Bus> buses;
             if (useStreams) {
                 buses = service.streamRead(inputType);
             } else {
                 buses = service.read(inputType);
+            }
+
+            SortType sortType = applicationController.askSortType();
+            SortAlgorithm sortAlgorithm = applicationController.askSortAlgorithm();
+            SortCondition sortCondition = applicationController.askSortCondition();
+            Boolean performExport = applicationController.askBoolean("Экспортировать в файл?");
+            if (performExport) {
+                exportService.setPath(applicationController.askString("Введите путь к файлу вывода: "));
             }
             
             CustomList<Bus> sortedBuses = service.sort(buses, sortType, sortAlgorithm, sortCondition);
@@ -59,9 +61,14 @@ public class App {
                 exportService.save(sortedBuses);
             }
 
-            applicationController.showList(sortedBuses);
+            applicationController.show(sortedBuses.toString());
             
-        }        
+            if (!applicationController.askBoolean("Продолжить работу приложения?")) {
+                break;
+            }
+        }
+        applicationController.show("Завершение работы приложения.");
+        SingletonScanner.getInstance().getScanner().close();
     }
 
 }
